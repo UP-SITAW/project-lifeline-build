@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  rxbox-manager:
+    image: crtupas/rxbox-manager:0.0.1
+    volumes:
+      - ./rxbox-manager:/user/src/app
+    ports:
+      - 2001:2001
+    restart: unless-stopped
+  lifeline-app:
+    image: crtupas/up-pgh:alpha_v0.0.7
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 80:80
+    restart: unless-stopped
+    depends_on:
+      - rxbox-manager
