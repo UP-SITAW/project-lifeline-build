@@ -2,7 +2,7 @@ version: '3'
 
 services:
   rxbox-manager:
-    image: crtupas/rxbox-manager:0.0.1
+    image: crtupas/rxbox-manager:0.0.2
     volumes:
       - ./rxbox-manager:/user/src/app
     ports:
