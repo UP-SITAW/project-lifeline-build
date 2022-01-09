@@ -9,5 +9,5 @@ Installation:
 <br /><code>docker-compose up --build</code><br />
 
 Note:
-- Make sure MySQL is already installed and running on the system.
-- Also Make sure the up-pgh database and all of its base data are already existing.
+- Make sure the up-pgh database is imported and all of its base data are already existing. If not execute script inside <code>sql_script</code> folder.
+- This script should install the following inside of containers: <p><p>up-pgh(lifeline backend server),<br />rxbox-manager,<br /> and mysql server.
