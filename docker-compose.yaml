@@ -2,14 +2,14 @@ version: '3'
 
 services:
   rxbox-manager:
-    image: crtupas/rxbox-manager:0.0.2
+    image: crtupas/rxbox-manager:0.0.3
     volumes:
       - ./rxbox-manager:/user/src/app
     ports:
       - 2001:2001
     restart: unless-stopped
   lifeline-app:
-    image: crtupas/up-pgh:alpha_v0.0.7
+    image: crtupas/up-pgh:alpha_v0.0.8
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
@@ -17,3 +17,21 @@ services:
     restart: unless-stopped
     depends_on:
       - rxbox-manager
+      - mysql_database
+
+  mysql_database:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=ward
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=up-pgh
+    volumes:
+      - db-data:/var/lib/mysql
+    cap_add:
+      - SYS_NICE
+
+volumes:
+  db-data:
